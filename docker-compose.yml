@@ -4,9 +4,10 @@ services:
   backend:
     build: ./docker/python
     ports:
-      - 8080:8080
+      - "127.0.0.1:8080:8080"
     volumes:
       - ./backend/:/app/
+
   frontend:
     build: ./docker/apache
     ports:
