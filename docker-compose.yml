@@ -7,3 +7,9 @@ services:
       - 8080:8080
     volumes:
       - ./backend/:/app/
+  frontend:
+    build: ./docker/apache
+    ports:
+      - 8000:80
+    volumes:
+      - ./frontend/public-html/:/usr/local/apache2/htdocs/
