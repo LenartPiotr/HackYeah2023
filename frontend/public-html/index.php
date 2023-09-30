@@ -1,5 +1,20 @@
+<?php
+
+$lang = 'en';
+$support_languages = array('pl', 'en');
+
+if (isset($_GET['lang'])) {
+    if (in_array($_GET['lang'], $support_languages)) {
+        $lang = $_GET['lang'];
+    }
+}
+
+include_once 'dictionary/'.$lang.'.php';
+
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?php echo $lang; ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,16 +31,20 @@
     <script src="scripts/main.js"></script>
     <script src="scripts/code-mirror.js"></script>
 
-    <title>Talk to your data</title>
+    <title><?php echo $web_title; ?></title>
 </head>
 <body>
-    <h1>Talk To Your Data</h1>
-    <input type="text" id="text-input" placeholder="Enter your prompt here (e.g. Give me all users with age greater than 30)"/>
+    <div class='flags'>
+        <a href="?lang=pl"><img src="assets/pl.png" alt=""></a>
+        <a href="?lang=en"><img src="assets/en.png" alt=""></a>
+    </div>
+    <h1><?php echo $title; ?></h1>
+    <input type="text" id="text-input" placeholder="<?php echo $placeholder; ?>"/>
     <section class="sql-area">
         <div></div>
         <textarea id="sql-editor" cols="30" rows="6"></textarea>
         <div>
-            <button>Run</button>
+            <button><?php echo $button; ?></button>
         </div>
     </section>
     <section class="results"></section>

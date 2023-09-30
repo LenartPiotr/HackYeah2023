@@ -49,6 +49,33 @@ html {
     background-color: @color2;
 }
 
+.flags {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+
+    a {
+        @width: 50px;
+        @height: (@width / 3 * 2);
+
+        width: @width;
+        height: @height;
+        margin: 0 0 0 10px;
+        cursor: pointer;
+        z-index: 1;
+        
+        img {
+            width: @width;
+            height: @height;
+            cursor: pointer;
+        }
+    }
+}
+
 h1 {
     margin: 50px 0 0;
     padding: 0;
@@ -151,28 +178,30 @@ input[type=text] {
 }
 
 .CodeMirror {
+    @cursor: pointer !important;
+
     /* width */
     ::-webkit-scrollbar {
         width: 10px;
         height: 10px;
-        cursor: auto;
+        cursor: @cursor;
     }
 
     /* Track */
     ::-webkit-scrollbar-track {
         background: @scroll1-text;
-        cursor: auto;
+        cursor: @cursor;
     }
     
     /* Handle */
     ::-webkit-scrollbar-thumb {
         background: @scroll2-text;
-        cursor: auto;
+        cursor: @cursor;
     }
     
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
         background: @scroll3-text;
-        cursor: auto;
+        cursor: @cursor;
     }
 }

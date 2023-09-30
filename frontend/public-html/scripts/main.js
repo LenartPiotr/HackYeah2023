@@ -13,7 +13,7 @@ $(window).ready(_ => {
         if (e.keyCode == 13) {
             var text = input.val();
             // ajax to background
-            text = 'Select * from users where age > 10 group by name limit 10';
+            text = 'SELECT * FROM \'JPK_PODMIOT\' LIMIT 30';
             text = StylizeSql(text);
             ShowSql(text);
         }
@@ -21,9 +21,14 @@ $(window).ready(_ => {
 
     runButton.on('click', ()=>{
         var text = editor.getValue();
-        // ajax query
-        console.log(text); // REMOVE
-        PrintData('<table><tr><th>Name 1</th><th>Name 2</th><th>Name 3</th></tr><tr><td>Option 1</td><td>Value 1</td><td>Abc 1</td></tr><tr><td>Option 1</td><td>Value 1</td><td>Abc 1</td></tr></table>')
+        $.ajax({
+            type: "POST",
+            url: '/php/sql-query.php',
+            data: {query: text},
+            success: value => {
+                PrintData(value, true);
+            }
+        });
     });
 })
 
@@ -56,7 +61,7 @@ function ShowSql(sql) {
     editor.setValue(sql);
 }
 
-function PrintData(data) {
+function PrintData(data, scroll) {
     var res = $('.results');
     res.html('');
     setTimeout(() => {
@@ -64,9 +69,11 @@ function PrintData(data) {
         Hide(res);
         setTimeout(() => {
             FadeIn(res, 500);
-            $([document.documentElement, document.body]).animate({
-                scrollTop: res.offset().top
-            }, 1000);
+            if (scroll) {
+                $([document.documentElement, document.body]).animate({
+                    scrollTop: res.offset().top
+                }, 1000);
+            }
         }, 100);
     }, 1);
 }
