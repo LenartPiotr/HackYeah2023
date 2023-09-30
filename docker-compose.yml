@@ -14,3 +14,20 @@ services:
       - 8000:80
     volumes:
       - ./frontend/public-html/:/usr/local/apache2/htdocs/
+
+  php:
+    build: ./docker/php
+    expose:
+      - 9000
+    volumes:
+      - ./frontend/public-html/:/var/www/html/
+
+  db:
+    image: mariadb:latest
+    environment:
+      MARIADB_USER: user
+      MARIADB_PASS: pass
+      MARIADB_ROOT_PASS: root
+    ports:
+      - 3306:3306
+
