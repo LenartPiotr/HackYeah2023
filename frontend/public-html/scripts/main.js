@@ -1,8 +1,10 @@
 $(window).ready(_ => {
     var input = $('input[type=text]');
+    var runButton = $('.sql-area button');
 
     Hide('h1');
     Hide(input);
+    Hide('.sql-area button');
 
     FadeIn('h1', 500, 0);
     FadeIn(input, 500, 200);
@@ -11,9 +13,17 @@ $(window).ready(_ => {
         if (e.keyCode == 13) {
             var text = input.val();
             // ajax to background
+            text = 'Select * from users where age > 10 group by name limit 10';
             text = StylizeSql(text);
             ShowSql(text);
         }
+    });
+
+    runButton.on('click', ()=>{
+        var text = editor.getValue();
+        // ajax query
+        console.log(text); // REMOVE
+        PrintData('<table><tr><th>Name 1</th><th>Name 2</th><th>Name 3</th></tr><tr><td>Option 1</td><td>Value 1</td><td>Abc 1</td></tr><tr><td>Option 1</td><td>Value 1</td><td>Abc 1</td></tr></table>')
     });
 })
 
@@ -35,7 +45,6 @@ function FadeIn(element, duration, timeout) {
 }
 
 function StylizeSql(sql) {
-    var newlineWords = ['alter','backup','create','drop','from','having','select','distinct','where','order','limit','group'];
     var newlineRegex = /(?<=.) (alter|backup|create|drop|from|having|select|distinct|where|order|limit|group)/ig;
     sql = sql.replace(newlineRegex, '\n$1')
     return sql;
@@ -43,5 +52,21 @@ function StylizeSql(sql) {
 
 function ShowSql(sql) {
     FadeIn('.CodeMirror', 500);
+    FadeIn('.sql-area button', 500, 100);
     editor.setValue(sql);
+}
+
+function PrintData(data) {
+    var res = $('.results');
+    res.html('');
+    setTimeout(() => {
+        res.html(data);
+        Hide(res);
+        setTimeout(() => {
+            FadeIn(res, 500);
+            $([document.documentElement, document.body]).animate({
+                scrollTop: res.offset().top
+            }, 1000);
+        }, 100);
+    }, 1);
 }
