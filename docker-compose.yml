@@ -23,10 +23,6 @@ services:
       - ./frontend/public-html/:/var/www/html/
 
   db:
-    image: mariadb:latest
-    environment:
-      MARIADB_USER: user
-      MARIADB_PASSWORD: pass
-      MARIADB_ROOT_PASSWORD: root
+    build: ./docker/db
     ports:
       - 3306:3306
