@@ -13,11 +13,14 @@
     <script src="https://cdn.jsdelivr.net/npm/less"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/sql/sql.min.js"></script>
+    <script src="scripts/main.js"></script>
     <script src="scripts/code-mirror.js"></script>
 
     <title>Talk to your data</title>
 </head>
 <body>
-<textarea id="sql-editor" cols="30" rows="10"></textarea>
+    <h1>Talk To Your Data</h1>
+    <input type="text" id="text-input" placeholder="Enter your prompt here (e.g. Give me all users with age greater than 30)"/>
+    <textarea id="sql-editor" cols="30" rows="6"></textarea>
 </body>
 </html>
