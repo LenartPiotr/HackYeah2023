@@ -34,6 +34,7 @@ include_once 'dictionary/'.$lang.'.php';
     <title><?php echo $web_title; ?></title>
 </head>
 <body>
+    <script>const lang = "<?php echo $lang; ?>";</script>
     <div class='flags'>
         <a href="?lang=pl"><img src="assets/pl.png" alt=""></a>
         <a href="?lang=en"><img src="assets/en.png" alt=""></a>
