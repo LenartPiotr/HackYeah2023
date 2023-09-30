@@ -12,7 +12,20 @@
 @color4: #2C74B3;
 @white: white;
 
+@button1: #4B943D;
+@button2: #509E41;
+@button3: #64C451;
+
 @input_bg: #282a36;
+@fontsize-main: 24px;
+
+@scroll1-text: #3A3E4F;
+@scroll2-text: #6A708F;
+@scroll3-text: #99A2CF;
+
+@scroll1-main: #103359;
+@scroll2-main: #174980;
+@scroll3-main: #226EBF;
 
 @font-face {
     font-family: 'Roboto';
@@ -48,7 +61,7 @@ input[type=text] {
     margin: 100px auto 0;
     width: 80%;
     padding: 20px;
-    font-size: 24px;
+    font-size: @fontsize-main;
     text-align: center;
     display: block;
     background: @input_bg;
@@ -59,14 +72,107 @@ input[type=text] {
     font-family: @font, 'sans-serif';
 }
 
+.sql-area {
+    margin-top: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    
+    .CodeMirror {
+        position: 'relative';
+        margin: 0 50px;
+        width: 500px;
+        opacity: 0;
+        top: -30px;
+        cursor: text;
+        padding: 20px;
+        border-radius: 15px;
+        font-size: @fontsize-main;
+    }
+
+    &>div {
+        width: 200px;
+    }
+
+    button {
+        background-color: @button1;
+        padding: 15px 60px;
+        font-size: @fontsize-main;
+        cursor: pointer;
+        outline: none;
+        border: none;
+        border-radius: 15px;
+        color: @white;
+
+        &:hover {
+            background-color: @button2;
+        }
+
+        &:active {
+            background-color: @button3;
+        }
+    }
+}
+
+.results {
+    margin: 100px 0;
+    table {
+        margin: 0 auto;
+        font-size: @fontsize-main;
+        color: white;
+        text-align: center;
+    }
+    td, th {
+        background-color: @color3;
+        padding: 5px 30px;
+    }
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 20px;
+    height: 20px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+    background: @scroll1-main;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: @scroll2-main;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: @scroll3-main;
+}
+
 .CodeMirror {
-    position: 'relative';
-    margin: 100px auto 0;
-    width: 500px;
-    opacity: 0;
-    top: -30px;
-    cursor: text;
-    padding: 20px;
-    border-radius: 15px;
-    font-size: 24px;
+    /* width */
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+        cursor: auto;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: @scroll1-text;
+        cursor: auto;
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: @scroll2-text;
+        cursor: auto;
+    }
+    
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: @scroll3-text;
+        cursor: auto;
+    }
 }
