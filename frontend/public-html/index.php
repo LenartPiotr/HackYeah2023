@@ -48,5 +48,8 @@ include_once 'dictionary/'.$lang.'.php';
         </div>
     </section>
     <section class="results"></section>
+    <div class='arrow'>
+        <img src='assets/arrow-up-solid.svg' alt=''>
+    </div>
 </body>
 </html>

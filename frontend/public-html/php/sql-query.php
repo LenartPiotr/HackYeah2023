@@ -4,21 +4,24 @@ if (!isset($_POST['query'])) die('No query');
 
 $user = 'user';
 $pass = 'pass';
-$database = 'database';
-$host = '127.0.0.1';
+$database = 'hackyeah';
+$host = 'db';
+$port = '3306';
 
 $query = $_POST['query'];
 
-$dbh = new PDO('mysql:host='.$host.';dbname='.$database, $user, $pass);
+$pdo = new PDO('mysql:host='.$host.';port='.$port.';dbname='.$database, $user, $pass);
 
-$stmt = $pdo->query("SELECT * FROM 'JPK_PODMIOT' LIMIT 30");
+$stmt = $pdo->query($_POST['query']);
 $first = true;
 echo '<table>';
-while ($row = $stmt->fetch()) {
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     if ($first) {
+        echo '<thead>';
         foreach ($row as $key => $value) {
             echo '<th>'.$key.'</th>';
         }
+        echo '</thead>';
         $first = false;
     }
     echo '<tr>';
