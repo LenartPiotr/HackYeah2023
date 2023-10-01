@@ -22,6 +22,8 @@ $(window).ready(_ => {
                 data: { 
                     input: text,
                     lang: lang,
+                    temperature: $('#id_temp').val(),
+                    top_p: $('#id_top').val()
                 },
                 success: function(response) {
                     text = response;

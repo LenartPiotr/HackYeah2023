@@ -52,8 +52,8 @@ include_once 'dictionary/'.$lang.'.php';
         </div>
     </section>
     <section id='adv-options'>
-        <div>Temperature <input type="text" value='0.2'/></div>
-        <div>Top P <input type="text" value='0.95'/></div>
+        <div>Temperature <input id="id_temp" type="text" value='0.2'/></div>
+        <div>Top P <input id="id_top" type="text" value='0.95'/></div>
     </section>
     <section class="results"></section>
     <div class='space'></div>
