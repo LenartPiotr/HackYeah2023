@@ -11,3 +11,7 @@ The entire project uses Docker containerisation technology, which makes deployin
 The main container contains a web server displaying the main user interface, which communicates with containers dealing with the translation of natural language into sql queries, which can later be verified and executed on the target database located on a separate container.
 
 The solution we present does not include an AI model container due to limits from the hardware we have with us. Instead, the server is run outside the docker on the graphics card.
+
+### How to run project
+
+To run project you have to run command `docker-compose up` in main directory
