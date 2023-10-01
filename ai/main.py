@@ -38,8 +38,12 @@ def get_sql_statement():
 
     if temperature is None:
         temperature = 0.2
+    else:
+        temperature = float(temperature)
     if top_p is None:
         top_p = 0.95
+    else:
+        top_p = float(top_p)
 
     prompt = database_description+'\n'+'Write an sql statement that satisfies the following description: '+input_text
 
@@ -71,7 +75,7 @@ def get_sql_statement():
 
     return output
 
-@app.get('/followup')
+@app.get('/followup/')
 def followup():
     global last_prompts, last_temperature, last_top_p
     if len(last_prompts) == 0:
@@ -88,8 +92,12 @@ def followup():
 
     if temperature is None:
         temperature = last_temperature
+    else:
+        temperature = float(temperature)
     if top_p is None:
         top_p = last_top_p
+    else:
+        top_p = float(top_p)
     
     instructions = last_prompts.copy()
     instructions.append({
