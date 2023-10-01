@@ -1,0 +1,49 @@
+JPK_VAT (Standard Audit File for Tax) is a Polish VAT statement which contains a set of information 
+about business operations for a given period. Entrepreneurs send it only in an electronic form by the 
+25th of the month for each previous month. JPK_VAT has a specific layout and format for facilitating 
+data processing.
+Description of JPK_VAT structure:
+JPK_PODMIOT contains information which identifies the JPK_VAT submitter 
+• PODMIOT_ID – company ID,
+• NAGLOWEK_ID – primary key,
+• NIP – taxpayer’s tax ID,
+• IMIE – taxpayer’s first name,
+• NAZWISKO – taxpayer’s surname,
+• DATA_URODZENIA – taxpayer’s date of birth,
+• TELEFON – taxpayer’s phone number.
+JPK_NAGLOWEK contains information, for example, about the JPK_VAT submission period:
+• NAGLOWEK_ID – primary key,
+• CZAS_WYSLANIA – date of sending JPK_VAT (f. ex. 20200903) ,
+• CZAS_UTWORZENIA – date of preparing JPK_VAT (f. ex. 20200903),
+• DATA_OD – start date of the period for which JPK_VAT is sent (f. ex. 20200903),
+• DATA_DO – final date of the period for which JPK_VAT is sent (f. ex. 20200903),
+• ROKMC – year and month of the period for which JPK_VAT is sent (f. ex. 202201).
+VAT_ZAKUP – records of purchase invoices: 
+• ZAKUP_ID – purchase ID,
+• NAGLOWEK_ID – primary key,
+• NR_DOSTAWCY – provider number,
+• DOWOD_ZAKUPU – purchase invoice number,
+• DATA_ZAKUPU – date of purchase invoice,
+• DATA_WPLYWU – date of delivering the purchase invoice,
+• P_61 – input VAT,
+• P_77 – net value of purchases of goods and services included in the taxpayer’s fixed assets,
+• P_78 – net value of purchases of other goods and services.
+VAT_SPRZEDAZ – records of sales invoices:
+• SPRZEDAZ_ID – sales ID,
+• NAGLOWEK_ID – primary key,
+• NR_KONTRAHENTA – contractor number,
+• DOWOD_SPRZEDAZY – sales invoice number,
+• DATA_WYSTAWIENIA – date of sales invoice,
+• DATA_SPRZEDAZY – date of sale,
+• P_6 – supply of goods and services in the country, taxed at a rate of 5 per cent,
+• P_8 – supply of goods and services in the country, taxed at a rate of 7 or 8 per cent,
+• P_9 – supply of goods and services in the country, taxed at a rate of 22 or 23 per cent,
+• P_11 – turnover,
+• P_13 – the amount of output VAT resulting from the supply of goods and services in the 
+country, taxed at a rate of 5 per cent,
+• P_15 – the amount of output VAT resulting from the supply of goods and services in the 
+country, taxed at a rate of 7 or 8 per cent,
+• P_16 – the amount of output VAT resulting from the supply of goods and services in the 
+country, taxed at a rate of 22 or 23 per cent,,
+• P_19 – output VAT,
+• P_96 – tax base.
