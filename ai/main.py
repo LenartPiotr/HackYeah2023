@@ -44,22 +44,20 @@ def get_sql_statement():
     prompt = database_description+'\n'+'Write an sql statement that satisfies the following description: '+input_text
 
     instructions = [
-        [
-            {
-                'role': 'system',
-                'content': 'Answer in SQL statements only'
-            },
-            {
-                'role': 'user',
-                'content': prompt
-            }
-        ]
+        {
+            'role': 'system',
+            'content': 'Answer in SQL statements only'
+        },
+        {
+            'role': 'user',
+            'content': prompt
+        }
     ]
 
     last_prompts = instructions.copy()
 
     results = model.chat_completion(
-        instructions,
+        [instructions],
         max_gen_len=3000,
         temperature=temperature,
         top_p=top_p
@@ -100,7 +98,7 @@ def followup():
     })
 
     results = model.chat_completion(
-        instructions,
+        [instructions],
         max_gen_len=3000,
         temperature=temperature,
         top_p=top_p
