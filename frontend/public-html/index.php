@@ -42,13 +42,21 @@ include_once 'dictionary/'.$lang.'.php';
     <h1><?php echo $title; ?></h1>
     <input type="text" id="text-input" placeholder="<?php echo $placeholder; ?>"/>
     <section class="sql-area">
-        <div></div>
-        <textarea id="sql-editor" cols="30" rows="6"></textarea>
-        <div>
-            <button><?php echo $button; ?></button>
+        <div id="conversation"></div>
+        <div class='sql-editor-container'>
+            <textarea id="sql-editor" cols="30" rows="6"></textarea>
+            <div class='buttons-area'>
+                <button id='bt_run'><?php echo $button; ?></button>
+                <button id='bt_adv'><?php echo $button2; ?></button>
+            </div>
         </div>
     </section>
+    <section id='adv-options'>
+        <div>Temperature <input type="text" value='0.2'/></div>
+        <div>Top P <input type="text" value='0.95'/></div>
+    </section>
     <section class="results"></section>
+    <div class='space'></div>
     <div class='arrow'>
         <img src='assets/arrow-up-solid.svg' alt=''>
     </div>

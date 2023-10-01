@@ -9,6 +9,7 @@ $host = 'db';
 $port = '3306';
 
 $query = $_POST['query'];
+if (empty($query)) die('<div class="error">Empty query</div>');
 
 $pdo;
 try {
@@ -37,7 +38,7 @@ try {
         echo '</tr>';
     }
     echo '</table>';
-} catch (PDOException $exception) {
+} catch (Exception $exception) {
     echo '<div class="error">Incorrect query</div>';
 }
 

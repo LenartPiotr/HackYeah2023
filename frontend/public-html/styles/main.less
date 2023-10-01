@@ -16,6 +16,11 @@
 @button2: #509E41;
 @button3: #64C451;
 
+@button1_adv: #943d3d;
+@button2_adv: #9e4141;
+@button3_adv: #c45151;
+
+
 @input_bg: #282a36;
 
 @scroll1-text: #3A3E4F;
@@ -108,16 +113,22 @@ input[type=text] {
 }
 
 .sql-area {
-    margin-top: 100px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    margin: 100px auto 0;
+    width: 80%;
+    display: none;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
     
+    .sql-editor-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
     .CodeMirror {
-        position: 'relative';
-        margin: 0 50px;
+        margin: 0;
         width: 500px;
         opacity: 0.1;
         top: -30px;
@@ -127,13 +138,25 @@ input[type=text] {
         font-size: 1rem;
     }
 
-    &>div {
-        width: 200px;
+    #conversation {
+        color: white;
+        height: 410px;
+        overflow-y: auto;
+
+        & > * {
+            margin-bottom: 5px;
+        }
+    }
+
+    & > * {
+        position: relative;
+        width: 45%;
     }
 
     button {
         background-color: @button1;
         padding: 15px 60px;
+        margin: 10px 0 0;
         font-size: 1rem;
         cursor: pointer;
         outline: none;
@@ -147,6 +170,53 @@ input[type=text] {
 
         &:active {
             background-color: @button3;
+        }
+
+        &[id=bt_adv] {
+            background-color: @button1_adv;
+
+            &:hover {
+                background-color: @button2_adv;
+            }
+    
+            &:active {
+                background-color: @button3_adv;
+            }
+        }
+    }
+}
+
+#adv-options {
+    width: 90%;
+    margin: 50px auto 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    div {
+        width: 300px;
+        height: 50px;
+        margin: 0 15px;
+        border-radius: 15px;
+        background-color: @button1;
+        color: white;
+        padding: 0 30px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        input {
+            margin: 0 0 0 20px;
+            padding: 0;
+            background: none;
+            max-width: 200px;
+            position: relative;
+            border-radius: 0;
+
+            border-bottom: 1px solid white;
         }
     }
 }
@@ -272,4 +342,9 @@ input[type=text] {
 
 .error {
     color: red;
+}
+
+.space {
+    height: 1px;
+    width: 100%;
 }

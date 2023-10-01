@@ -1,6 +1,7 @@
 $(window).ready(_ => {
     var input = $('input[type=text]');
-    var runButton = $('.sql-area button');
+    var runButton = $('#bt_run');
+    var advButton = $('#bt_adv');
     var arrow = $('.arrow');
 
     Hide('h1');
@@ -15,10 +16,27 @@ $(window).ready(_ => {
     input.on('keydown', e => {
         if (e.keyCode == 13) {
             var text = input.val();
-            // ajax to background
-            text = 'SELECT * FROM JPK_PODMIOT LIMIT 30';
-            text = StylizeSql(text);
-            ShowSql(text);
+            $.ajax({
+                url: "127.0.0.1:8080",
+                type: "get",
+                data: { 
+                    input: text,
+                    lang: lang,
+                },
+                success: function(response) {
+                    text = response;
+                    AddConversation(text);
+                    text = StylizeSql(text);
+                    ShowSql(text);
+                },
+                error: function(xhr) {
+                    setTimeout(() => {
+                        text = 'Błąd konwersacji';
+                        AddConversation(text);
+                        ShowSql('');
+                    }, 1000);
+                }
+            });
         }
     });
 
@@ -47,6 +65,8 @@ $(window).ready(_ => {
             arrow.fadeOut();
         }
     });
+
+    advButton.on('click', () => ShowHideAdvancedOptions());
 })
 
 function Hide(element) {
@@ -76,6 +96,7 @@ function StylizeSql(sql) {
 }
 
 function ShowSql(sql) {
+    $('.sql-area').css({display: 'flex'});
     FadeIn('.CodeMirror', 500);
     FadeIn('.sql-area', 500, 100, true);
     editor.setValue(sql);
@@ -91,9 +112,31 @@ function PrintData(data, scroll) {
             FadeIn(res, 500);
             if (scroll) {
                 $([document.documentElement, document.body]).animate({
-                    scrollTop: res.offset().top + 50
+                    scrollTop: res.offset().top
                 }, 1000);
             }
         }, 100);
     }, 1);
+}
+
+function AddConversation(text) {
+    var newElement;
+    $('#conversation').append(
+        newElement = $('<div>').text(text)
+    );
+    Hide(newElement);
+    FadeIn(newElement, 300);
+    setTimeout(() => {
+        $('#conversation').animate({
+            scrollTop: $('#conversation')[0].scrollHeight
+        }, 100);
+    }, 1);
+}
+
+var hideOptions = true;
+
+function ShowHideAdvancedOptions() {
+    advOptions = $('#adv-options');
+    advOptions.css({display: hideOptions ? 'flex' : 'none'});
+    hideOptions = !hideOptions;
 }
