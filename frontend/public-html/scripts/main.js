@@ -13,11 +13,13 @@ $(window).ready(_ => {
 
     arrow.css({display: 'none'});
 
+    var first = true;
+
     input.on('keydown', e => {
         if (e.keyCode == 13) {
             var text = input.val();
             $.ajax({
-                url: "127.0.0.1:8080",
+                url: "127.0.0.1:5000" + first ? '' : '/followup',
                 type: "get",
                 data: { 
                     input: text,
@@ -30,6 +32,7 @@ $(window).ready(_ => {
                     AddConversation(text);
                     text = StylizeSql(text);
                     ShowSql(text);
+                    first = false;
                 },
                 error: function(xhr) {
                     setTimeout(() => {
